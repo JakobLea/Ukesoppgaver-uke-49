@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oppgaveadministrasjon</title>
+</head>
+<body>
+<h1>Oppgaveadministrasjon</h1>
+
+<form id="taskForm">
+    <label for="taskTitle">Oppgavetittel:</label>
+    <input type="text" id="taskTitle" name="taskTitle" required>
+
+    <label for="taskDescription">Oppgavebeskrivelse:</label>
+    <textarea id="taskDescription" name="taskDescription" required></textarea>
+
+    <button type="button" onclick="addTask()">Legg til oppgave</button>
+</form>
+
+<h2>Oppgaveliste</h2>
+<ul id="taskList"></ul>
+
+<script>
+    function addTask() {
+        var taskTitle = document.getElementById("taskTitle").value;
+        var taskDescription = document.getElementById("taskDescription").value;
+
+        var list = document.getElementById("taskList");
+        var listItem = document.createElement("li");
+        listItem.innerHTML = `<strong>${taskTitle}</strong>: ${taskDescription} <button onclick="deleteTask(this)">Slett</button>`;
+        list.appendChild(listItem);
+
+        // Send data to server (not implemented in this example)
+    }
+
+    function deleteTask(button) {
+        var listItem = button.parentNode;
+        var list = listItem.parentNode;
+        list.removeChild(listItem);
+
+        // Send delete request to server (not implemented in this example)
+    }
+</script>
+</body>
+</html>
